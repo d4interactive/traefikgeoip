@@ -5,6 +5,17 @@ import (
 	"io/ioutil"
 	"net"
 	"strconv"
+	"sync"
+)
+
+// cityReaderCache shares a single CityReader (and its ~66MB DB buffer) per file path
+// across all middleware instances. Traefik builds a new plugin instance per router that
+// references the middleware; without this cache each instance would ReadFile the whole
+// DB into heap, multiplying memory by the number of routes and OOM-killing Traefik.
+// The MaxMind reader is read-only and safe for concurrent use.
+var (
+	cityReaderCache   = map[string]*CityReader{}
+	cityReaderCacheMu sync.Mutex
 )
 
 type CityReader struct {
@@ -100,11 +111,21 @@ func NewCityReader(buffer []byte) (*CityReader, error) {
 }
 
 func NewCityReaderFromFile(filename string) (*CityReader, error) {
+	cityReaderCacheMu.Lock()
+	defer cityReaderCacheMu.Unlock()
+	if r, ok := cityReaderCache[filename]; ok {
+		return r, nil
+	}
 	buffer, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
-	return NewCityReader(buffer)
+	r, err := NewCityReader(buffer)
+	if err != nil {
+		return nil, err
+	}
+	cityReaderCache[filename] = r
+	return r, nil
 }
 
 func NewEnterpriseReader(buffer []byte) (*CityReader, error) {
