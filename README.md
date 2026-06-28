@@ -34,13 +34,13 @@ services:
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entryPoints.web.address=:80"
-      - "--experimental.localPlugins.traefikgeoip.moduleName=github.com/thiagotognoli/traefikgeoip"
+      - "--experimental.localPlugins.traefikgeoip.moduleName=github.com/d4interactive/traefikgeoip"
     ports:
       - "80:80"
       - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "../.:/plugins-local/src/github.com/thiagotognoli/traefikgeoip"
+      - "../.:/plugins-local/src/github.com/d4interactive/traefikgeoip"
       - geoipupdate_data:/usr/share/GeoIP
     networks:
       - traefikgeoip_example
@@ -116,7 +116,7 @@ The following snippet should be added to `values.yaml`:
 experimental:
   plugins:
     geoip2:
-      moduleName: github.com/thiagotognoli/traefikgeoip
+      moduleName: github.com/d4interactive/traefikgeoip
       version: v0.22.0
 deployment:
   additionalVolumes:
@@ -132,7 +132,7 @@ deployment:
         - "/bin/sh"
         - "-ce"
         - |
-          wget -P /tmp https://raw.githubusercontent.com/thiagotognoli/traefikgeoip/main/geolite2.tgz
+          wget -P /tmp https://raw.githubusercontent.com/d4interactive/traefikgeoip/main/geolite2.tgz
           tar --directory /tmp/geoip2 -xvzf /tmp/geolite2.tgz
 additionalVolumeMounts:
   - name: geoip2

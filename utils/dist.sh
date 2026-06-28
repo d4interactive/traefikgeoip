@@ -7,7 +7,7 @@ cd $basePath
 [[ -e "$basePath/dist" ]] && rm -rf "$basePath/dist"
 
 
-path="dist/plugins-local/src/github.com/thiagotognoli/traefikgeoip"
+path="dist/plugins-local/src/github.com/d4interactive/traefikgeoip"
 
 mkdir -p "$path"
 cp go.mod go.sum .traefik.yml middleware.go "$path"

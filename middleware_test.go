@@ -8,8 +8,8 @@ import (
 	"testing"
 	"unicode/utf8"
 
-	mw "github.com/thiagotognoli/traefikgeoip"
-	lmw "github.com/thiagotognoli/traefikgeoip/lib"
+	mw "github.com/d4interactive/traefikgeoip"
+	lmw "github.com/d4interactive/traefikgeoip/lib"
 )
 
 const (

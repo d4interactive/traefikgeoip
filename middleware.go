@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	lib "github.com/thiagotognoli/traefikgeoip/lib"
+	lib "github.com/d4interactive/traefikgeoip/lib"
 )
 
 // ResetLookup reset lookup function.

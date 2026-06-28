@@ -67,22 +67,22 @@ const (
 	// ContinentCodeHeader country code header name.
 	ContinentCodeHeader = "GeoIP-Continent-Code"
 	// CountryHeader country header name.
-	CountryHeader = "GeoIP-Country"
+	CountryHeader = "X-Country-Name"
 	// CountryCodeHeader country code header name.
-	CountryCodeHeader = "GeoIP-Country-Code"
+	CountryCodeHeader = "X-Country-Code"
 	// RegionHeader region header name.
-	RegionHeader = "GeoIP-Region"
+	RegionHeader = "X-Region"
 	// RegionCodeHeader region code header name.
-	RegionCodeHeader = "GeoIP-Region-Code"
+	RegionCodeHeader = "X-Region-Code"
 	// CityHeader city header name.
-	CityHeader = "GeoIP-City"
+	CityHeader = "X-City"
 	// PostalCodeHeader city header name.
 	PostalCodeHeader = "GeoIP-Postal-Code"
 
 	// LatitudeHeader latitude header name.
-	LatitudeHeader = "GeoIP-Latitude"
+	LatitudeHeader = "X-Latitude"
 	// LongitudeHeader longitude header name.
-	LongitudeHeader = "GeoIP-Longitude"
+	LongitudeHeader = "X-Longitude"
 	// AccuracyRadiusHeader coord accuracy radius header name.
 	AccuracyRadiusHeader = "GeoIP-Accuracy-Radius"
 	// GeohashHeader geohash header name.
